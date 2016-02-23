@@ -11,6 +11,7 @@ var canvas = document.getElementById("canvas");
 var start = document.getElementById("start");
 var stop = document.getElementById("stop");
 var ctx = canvas.getContext("2d");
+var requestID;
 
 
 //* outlines the canvas that the user can draw in
@@ -27,61 +28,47 @@ function clearBox(){
     makeBox(0,0,538,538);
 }
 
-
-animate = false;
-function animateToggle(x){
-    animate = x;
-}
-
 radius = 0; 
 growing = true;
 
 function draw(event){
-    console.log("drawing:" + animate);
-    if (animate) {
-	clearBox();
-	console.log("cleared, drawing");
-	//** alterating size of circle
-	if (growing){
-	    radius += 1; 
-	} else{
-	    radius -= 1;
-	}
-	
-	//** altering growing variable
-	if (radius == canvas.width/2){
-	    growing = false;
-	}
-	if (radius == 0){
-	    growing = true;
-	}
-
-	//* drawing the circle itself
-	ctx.beginPath();
-	ctx.fillStyle = "#003FFF";
-	ctx.arc(canvas.width/2, canvas.height/2, radius, 0, 2*Math.PI);
-	ctx.stroke();
-	ctx.fill();
-	
-	window.requestAnimationFrame(draw);
+    clearBox();
+    console.log("cleared, drawing");
+    //** alterating size of circle
+    if (growing){
+	radius += 1; 
     } else{
-	console.log("not drawing");
+	radius -= 1;
     }
+    
+    //** altering growing variable
+    if (radius == canvas.width/2){
+	growing = false;
+    }
+    if (radius == 0){
+	growing = true;
+    }
+
+    //* drawing the circle itself
+    ctx.beginPath();
+    ctx.fillStyle = "#003FFF";
+    ctx.arc(canvas.width/2, canvas.height/2, radius, 0, 2*Math.PI);
+    ctx.stroke();
+    ctx.fill();
+    
+    requestID = window.requestAnimationFrame(draw);
+    
 }
 
+var stopIt = function(){
+    window.cancelAnimationFrame(requestID);
+}
 
 makeBox(0,0,538,538);
+start.addEventListener("click",draw);
+stop.addEventListener("click", stopIt);
 
-start.addEventListener("click", function() {
-    animateToggle(true);
-    draw();
-});
 
-stop.addEventListener("click", function() {
-    animateToggle(false);
-});
-
-window.requestAnimationFrame(draw);
 
 
 
