@@ -12,13 +12,6 @@ var start = document.getElementById("start");
 var stop = document.getElementById("stop");
 var ctx = canvas.getContext("2d");
 var requestID;
-// DVD STUFF
-function drawLogo(){
-    var logo = new Image();
-    logo.src = "logo_dvd.jpg";
-    ctx.drawImage(logo,200,200,60,40);
-    console.log(logo);
-}
 
 //* outlines the canvas that the user can draw in
 function makeBox(x,y,w,h){
@@ -71,7 +64,6 @@ var stopIt = function(){
 }
 
 makeBox(0,0,538,538);
-drawLogo();
 start.addEventListener("click",draw);
 stop.addEventListener("click", stopIt);
 
