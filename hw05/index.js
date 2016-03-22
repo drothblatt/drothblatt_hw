@@ -15,10 +15,12 @@ var dem = [44,24,35,53,53,32,66,102,91,77,38,67,222,
 	   75,23,33,16,25,101,86,14,247,55,21,95,189,24,
 	   83,29,55,61,475,21,126,34,18,20,20];
 
-var rep = ["Iowa: 30",23,50,30,50,28,40,76,42,38,43,58,155,16,49,
+var rep = [30,23,50,30,50,28,40,76,42,38,43,58,155,16,49,
 	   40,46,46,23,19,32,59,40,19,26,69,72,66,99,52,
 	   58,40,42,95,28,16,38,17,19,57,36,34,28,44,172,
 	   27,51,24,29];
+var rep_states = ["Iowa","New Hampshire","South Carolina","Nevada","Alabama",
+		  "Alaska","Arkansas","Georgia","Massachusetts","Minnesota"];
 
 var p = document.getElementById("p");
 var donkey = document.getElementById("donkey");
@@ -46,7 +48,8 @@ var d3stuff = function(data){
       .selectAll("div")
         .data(data)
       .enter().append("div")
-   	.style("width", function(d) {return d*2 + "px"; })
+   	.style("width", function(d) {
+	    return d*2 + "px"; })
 	.text(function(d) {return d;})
         .data(states)
       .insert("span")
