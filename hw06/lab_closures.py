@@ -35,12 +35,18 @@ def repeat(str_):
 r1 = repeat("hello")
 r2 = repeat("goodbye")
 
-print r1(2) #-> hellohello
-print r2(2) #-> goodbyegoodbye
-print repeat('cool')(3) #-> coolcoolcool
+print r1(2) # -> hellohello
+print r2(2) # -> goodbyegoodbye
+print repeat('cool')(3) # -> coolcoolcool
 
 x = "."
 y = repeat(x)
 z = y(3)
 ellipse = z 
 print ellipse
+
+'''
+print "mary" * 2
+print "david" * 10
+print "." * 3
+'''

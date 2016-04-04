@@ -32,6 +32,8 @@ def checkPasswordStrength(password):
     print "\nChecking Password Strength Of: " + password
     print "initial rating = 0"
 
+
+
     passLength = len(UCs) + len(LCs) + len(INTs)
     if passLength >= 9: 
         rating += 2
@@ -39,10 +41,10 @@ def checkPasswordStrength(password):
         rating += 1
     print "  + length rating = " + str(rating)
 
-
-    if len(UCs) > 0 and len(LCs) > 0: 
+    if len(UCs) > 0 and len(LCs) > 0:
         caseRatio =  len(LCs) / float(len(UCs))
         print "caseRatio: " + str(caseRatio)
+
         if caseRatio == 1: 
             rating += 4
         elif caseRatio > 1:
@@ -52,6 +54,7 @@ def checkPasswordStrength(password):
 
     elif len(LCs) == 0 or len(UCs) == 0:
         rating += 1
+        
     print "  + case ratio rating = " + str(rating)
     
     if len(INTs) > 0 and (len(LCs) + len(UCs) > 0):
@@ -59,6 +62,7 @@ def checkPasswordStrength(password):
             rating += 3
         else:
             rating += 2
+            
     elif len(INTs) > 0:
         rating += 1
     print "  + int rating = " +  str(rating)
@@ -70,12 +74,15 @@ def checkPasswordStrength(password):
     return " --> FINAL RATING =  " + str(rating) + "\n"
 
 
-print "expecting ...: "  + str( checkPasswordStrength("!myNoobPassHELLO1234&") )
-print "expecting ...: "  + str( checkPasswordStrength("myNoobPass1234") )
-print "expecting ...: "   + str( checkPasswordStrength("15869") ) 
+print "expecting 8...: "  + str( checkPasswordStrength("!myNoobPassHELLO1234&") )
+print "expecting 5...: "  + str( checkPasswordStrength("myNoobPass1234") )
+
+print "expecting 10...: "  + str( checkPasswordStrength("DaViD&12345!NoobPASSnyc") )
+
+
+print "expecting 2...: "   + str( checkPasswordStrength("15869") ) 
 print "expecting ...: "   + str( checkPasswordStrength("CAPSLOCK") ) 
 print "expecting ...: "   + str( checkPasswordStrength("hellolowercase") )
-
     
 '''
 
