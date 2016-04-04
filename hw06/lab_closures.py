@@ -1,5 +1,31 @@
+## David Rothblatt
+## SoftDev2 pd 3
+## Lab Work - Closures
+## 2016-04-01
+
+### MY REPEAT FUNCTION 
+def repeat(str_):
+    def iterations(int_):
+        return str_ * int_ 
+    return iterations
+
+r1 = repeat("hello")
+r2 = repeat("goodbye")
+
+print r1(2) # -> hellohello
+print r2(2) # -> goodbyegoodbye
+print repeat('cool')(3) # -> coolcoolcool
+
+# making an ellipse...
+x = "."
+y = repeat(x)
+z = y(3)
+ellipse = z 
+print ellipse
 
 
+
+### BUILD UP OF LAB
 def inc(x):
     return x + 1
 
@@ -27,23 +53,6 @@ a=f(1)
 b=h(1)
 
 
-def repeat(str_):
-    def iterations(int_):
-        return str_ * int_ 
-    return iterations
-
-r1 = repeat("hello")
-r2 = repeat("goodbye")
-
-print r1(2) # -> hellohello
-print r2(2) # -> goodbyegoodbye
-print repeat('cool')(3) # -> coolcoolcool
-
-x = "."
-y = repeat(x)
-z = y(3)
-ellipse = z 
-print ellipse
 
 '''
 print "mary" * 2
