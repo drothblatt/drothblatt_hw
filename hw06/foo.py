@@ -9,6 +9,7 @@ INTEGERS ="0123456789"
 SPEC_CHARS = ".?!&#,;:-_*"
 
 def checkMinThreshold(password):
+    print "\nChecking Min Threshold Of: " + password
     UCs =  [ x for x in password if x in UC_LETTERS ]  
     LCs =  [ x for x in password if x in LC_LETTERS ]  
     INTs = [ x for x in password if x in INTEGERS ]  
@@ -16,7 +17,6 @@ def checkMinThreshold(password):
         return True
     return False
 
-print "checkMinThreshold: "
 print "expecting True...: "  + str( checkMinThreshold("myNoobPass1234") )
 print "expecting False...: " + str( checkMinThreshold("15869") ) 
 print "expecting False...: " + str( checkMinThreshold("CAPSLOCK") ) 
@@ -28,32 +28,53 @@ def checkPasswordStrength(password):
     INTs = [ x for x in password if x in INTEGERS   ]
     SCs =  [ x for x in password if x in SPEC_CHARS ]
     rating = 0
-    
+
+    print "\nChecking Password Strength Of: " + password
+    print "initial rating = 0"
+
+    passLength = len(UCs) + len(LCs) + len(INTs)
+    if passLength >= 9: 
+        rating += 2
+    elif passLength >= 6:
+        rating += 1
+    print "  + length rating = " + str(rating)
+
+
     if len(UCs) > 0 and len(LCs) > 0: 
-        rating += int (  (  len(LCs)/ float(len(UCs))  )  )
-    elif len(LCs) == 0:
+        caseRatio =  len(LCs) / float(len(UCs))
+        print "caseRatio: " + str(caseRatio)
+        if caseRatio == 1: 
+            rating += 4
+        elif caseRatio > 1:
+            rating += 4 - int(caseRatio)
+        elif caseRatio < 1:
+            rating += 4 - int( len(UCs) / float(len(LCs)) )
+
+    elif len(LCs) == 0 or len(UCs) == 0:
         rating += 1
-    elif len(UCs) == 0:
-        rating += 1
-    print rating
+    print "  + case ratio rating = " + str(rating)
     
-    if len(INTs) > 0:
-        if ( len(INTs) / float ( len(LCs) ) ) > 0.3:
-            rating += 2
+    if len(INTs) > 0 and (len(LCs) + len(UCs) > 0):
+        if ( len(INTs) / float ( len(LCs) + len(UCs) ) ) > 0.3:
+            rating += 3
         else:
-            rating += 1
-    print rating
+            rating += 2
+    elif len(INTs) > 0:
+        rating += 1
+    print "  + int rating = " +  str(rating)
             
     if len(SCs) > 0:
         rating += 1
-    print rating
+    print "  + special char rating =  " + str(rating)
 
-    if rating > 10:
-        rating = 10
-    return rating
+    return " --> FINAL RATING =  " + str(rating) + "\n"
 
 
-print "expecting 7...: "  + str( checkPasswordStrength("!myNoobPass1234&") )
+print "expecting ...: "  + str( checkPasswordStrength("!myNoobPassHELLO1234&") )
+print "expecting ...: "  + str( checkPasswordStrength("myNoobPass1234") )
+print "expecting ...: "   + str( checkPasswordStrength("15869") ) 
+print "expecting ...: "   + str( checkPasswordStrength("CAPSLOCK") ) 
+print "expecting ...: "   + str( checkPasswordStrength("hellolowercase") )
 
     
 '''
