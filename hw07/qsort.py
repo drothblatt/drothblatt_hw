@@ -1,7 +1,7 @@
-## 
-##
-##
-##
+## David Rothblatt
+## SoftDev2 pd3
+## HW07: Qsort and other stuff
+## 2016-04-06
 
 import random
 
