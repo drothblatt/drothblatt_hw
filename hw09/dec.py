@@ -1,3 +1,7 @@
+## David Rothblatt
+## SoftDev2 pd3
+## HW09 -- decorators
+## 2016-08-2016
 
 def time_logging(f):
     def inner( *args ):
@@ -24,5 +28,7 @@ def intersection(A, B):
 A = [1, 2, 3]
 B = [2, 3, 4]
 print intersection(A, B)
+
+
     
 
