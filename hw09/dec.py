@@ -15,10 +15,15 @@ def time_logging(f):
 
 def fname_logging(f):
     def inner( *args ):
-        run = f(*args)
-        return "function name: " + f.func_name + "\n" + str(run)
+        run = f( *args )
+        arg_str = ""
+        for arg in args:
+            arg_str += str(arg) + ", "
+        arg_str = arg_str[:-2]
+        return "function name: " + f.func_name + "\n" + \
+               "arguments: " + arg_str + "\n" + \
+               "result: " + str(run)
     return inner
-
 
 @time_logging
 @fname_logging
