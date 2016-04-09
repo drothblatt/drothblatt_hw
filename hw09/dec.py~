@@ -1,0 +1,74 @@
+
+'''
+def hi(a, b, c):
+    return str(a) + str(b) + c
+
+
+def wrapper( f ):
+   def inner( *arg ):
+       return f( *arg )
+   return inner
+
+foo = hi
+closure = wrapper(foo)
+print closure( -2, 3, 'hello' )
+
+'''
+'''
+def wrap(f):
+    def decorate( *arg ):
+        def inner( *arg ):
+            return f( *arg )
+        return inner
+
+@fname_logging
+def union(A, B):
+    return [x for x in A if x in A and x not in B] + B
+
+@fname_logging
+def intersection(A, B):
+    return [x for x in A if x in A and x in B]
+
+
+A = [1, 2, 3]
+B = [2, 3, 4]
+print union(A, B)
+print intersection(A, B)
+
+'''
+
+#a simple example of applying multiple decorators
+def make_bold(fn):
+    return lambda : "<b>" + fn() + "</b>"
+
+def make_italic(fn):
+    return lambda : "<i>" + fn() + "</i>"
+
+@make_bold
+@make_italic
+def hello():
+    return "hello world"
+
+helloHTML = hello()
+
+print helloHTML
+
+
+import time
+
+def time_logging(f):
+    def inner( *args ):
+        start_time = time.time()
+        run = f(*args)
+        time = time.time() - start_time
+        return "execution time:" + time + run
+    
+
+@time_logging
+def intersection(A, B):
+    return [x for x in A if x in A and x in B]
+
+A = [1, 2, 3]
+B = [2, 3, 4]
+print intersection(A, B)
+    
