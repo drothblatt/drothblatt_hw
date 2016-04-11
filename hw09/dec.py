@@ -34,6 +34,10 @@ A = [1, 2, 3]
 B = [2, 3, 4]
 print intersection(A, B)
 
+## if len(L) <= 1: return L
+## qsort idea
+## ** preferred: return qsort(lh) + ([pivot] * L.count(pivot)) + qsort(uh)
+## return qsort(lh) + [x for x in L if x == pivot] + qsort(uh)
 
     
 
